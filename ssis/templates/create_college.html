@@ -1,0 +1,20 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create College</title>
+    <link rel="stylesheet" href="static/css/create_college.css" />
+</head>
+<body>
+  <label class="create_college">Create College</label>
+  <form method="POST">
+    <input type="text" class="form-control" name="college_code" id="college_code" placeholder="College Code" aria-label="College Code" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" name="college_name" id="college_name" placeholder="College Name" aria-label="College Name" aria-describedby="basic-addon1">
+    <button type="submit" class="btn btn-primary">Create College</button>
+  </form>
+</body>
+</html>
+
+{% endblock %}

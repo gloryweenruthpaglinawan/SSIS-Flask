@@ -1,0 +1,9 @@
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: url(https://www.creatrixcampus.com/sites/default/files/styles/image_1200x700/public/2019-05/benefits-of-student-information-system.jpg?itok=5_KSMYS5);
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
+
+}
+

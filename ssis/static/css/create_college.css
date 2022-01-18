@@ -1,0 +1,15 @@
+.create_college {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.form-control {
+    position: relative;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    position: relative;
+    left: 987px;
+    top: 10px;
+}
