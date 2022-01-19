@@ -21,9 +21,6 @@ def create_college():
         college_code= request.form.get('college_code')
         college_name= request.form.get('college_name')
 
-        print(college_code)
-        print(college_name)
-
         if len(college_code) == 0:
             flash("Kindly Input College Code", category="error")
         elif len(college_name) == 0:

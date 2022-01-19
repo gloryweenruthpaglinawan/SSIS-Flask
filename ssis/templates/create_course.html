@@ -1,0 +1,26 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Course</title>
+    <link rel="stylesheet" href="static/css/create_course.css" />
+</head>
+<body>
+  <label class="create_course">Create Course</label>
+  <form method="POST">
+    <input type="text" class="form-control" name="course_code" id="course_code" placeholder="Course Code" aria-label="Course Code" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Course Name" aria-label="Course Name" aria-describedby="basic-addon1">
+    <select class="college-option"  name="college-code"  id="college-code">                        
+      <option selected="selected">  Select College</option>
+      {% for coll in colleges_code %}
+         <option>{{coll[0]}}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Create Course</button>
+  </form>
+</body>
+</html>
+
+{% endblock %}

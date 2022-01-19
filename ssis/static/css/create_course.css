@@ -1,0 +1,21 @@
+.create_course {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.form-control {
+    position: relative;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    position: relative;
+    left: 5px;
+    bottom: 5px;
+}
+
+.college-option {
+    width: 980px;
+    margin-top: 10px;
+    height: 35px;
+}
