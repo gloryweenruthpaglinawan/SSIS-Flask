@@ -1,0 +1,33 @@
+.add_student {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.gender-option{
+    width: 980px;
+    margin-top: 10px;
+    height: 35px;
+}
+
+.year-option{
+    width: 980px;
+    margin-top: 10px;
+    height: 35px;
+}
+
+.course-option{
+    width: 980px;
+    margin-top: 10px;
+    height: 35px;
+}
+
+.form-control {
+    position: relative;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    position: relative;
+    left: 5px;
+    bottom: 5px;
+}

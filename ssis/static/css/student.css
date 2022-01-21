@@ -1,0 +1,10 @@
+.student-label {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    position: relative;
+    left: 770px;
+    top:35px;
+}
