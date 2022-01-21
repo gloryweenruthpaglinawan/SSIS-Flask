@@ -12,11 +12,25 @@ def collegeRecord():
     myCursor.execute("SELECT college_code, college_name FROM college")
     college= myCursor.fetchall()
     mysql.connection.commit()
-    return render_template("colleges.html", college=college)
+
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
+
+    return render_template("colleges.html", college=college, courses=courses, colleges_code=colleges_code)
 
 @college.route('/create_college', methods=['GET', 'POST'])
 def create_college():
     myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
     if request.method == 'POST':
         college_code= request.form.get('college_code')
         college_name= request.form.get('college_name')
@@ -31,11 +45,17 @@ def create_college():
 
             flash('College Successfully Registered!', category='success')
 
-    return render_template("create_college.html")
+    return render_template("create_college.html", colleges_code=colleges_code, courses=courses)
 
 @college.route('/update-college', methods=['GET', 'POST'])
 def update_college():
     myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
 
     if request.method == 'POST':
         college_name = request.form.get('college-name')
@@ -53,11 +73,17 @@ def update_college():
             flash("College Name Successfully Updated", category='success')
             myCursor.execute("SELECT college_code, college_name  FROM college")
             college= myCursor .fetchall()
-            return render_template("colleges.html", college=college)
+            return render_template("colleges.html", college=college, colleges_code=colleges_code, courses=courses)
 
 @college.route('/delete-college', methods=['GET', 'POST'])
 def delete_college():
     myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
     
     if request.method == 'POST':
         myCursor.execute("DELETE FROM college WHERE college.college_code=%s", (request.form.get('college-code'),))
@@ -66,4 +92,4 @@ def delete_college():
         flash("College Successfully Removed!", category='success')
         myCursor.execute("SELECT college_code, college_name FROM college")
         college= myCursor.fetchall()
-        return render_template("colleges.html", college=college)
+        return render_template("colleges.html", college=college, colleges_code=colleges_code, courses=courses)

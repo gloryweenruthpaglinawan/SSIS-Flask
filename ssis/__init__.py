@@ -23,9 +23,11 @@ def create_app(test_config=None):
     from .Student.student import student as student
     from .Course.course import course as course
     from .HomePage.homepage import homepage as homepage
+    from .HomePage.search import search as search
 
     app.register_blueprint(college, url_prefix='/')
     app.register_blueprint(student, url_prefix='/')
     app.register_blueprint(course, url_prefix='/')
     app.register_blueprint(homepage, url_prefix='/')
+    app.register_blueprint(search, url_prefix='/')
     return app 

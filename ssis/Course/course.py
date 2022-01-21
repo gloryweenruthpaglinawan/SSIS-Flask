@@ -11,13 +11,24 @@ def courseRecord():
     myCursor = mysql.connection.cursor()
     myCursor.execute("""SELECT course.course_code, course.course_name, college.college_name, college.college_code FROM college INNER JOIN course ON course.college_code = college.college_code""")
     course_list = myCursor.fetchall()
-    return render_template("course.html", course_list=course_list)
+
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
+    return render_template("course.html", course_list=course_list, colleges_code=colleges_code, courses=courses ) 
 
 @course.route('/create_course', methods=['GET', 'POST'])
 def create_course():
     myCursor = mysql.connection.cursor()
     myCursor.execute("SELECT college_code FROM college")
     colleges_code= myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
 
     if request.method == 'POST':
 
@@ -36,7 +47,7 @@ def create_course():
             mysql.connection.commit()
             flash('Course Successfully Register', category='success')
 
-    return render_template("create_course.html", colleges_code=colleges_code)
+    return render_template("create_course.html", colleges_code=colleges_code, courses=courses)
 
 @course.route('/updated_course', methods=['GET', 'POST'])
 def updated_course():
@@ -44,6 +55,10 @@ def updated_course():
     
     myCursor.execute("SELECT college_code FROM college")
     college = myCursor.fetchall()
+    mysql.connection.commit()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
     mysql.connection.commit()
 
     if request.method =='POST':
@@ -63,13 +78,17 @@ def updated_course():
         myCursor.execute("""SELECT course.course_code, course.course_name, college.college_name, college.college_code FROM college INNER JOIN course ON course.college_code = college.college_code""")
         course_list = myCursor.fetchall()
 
-        return render_template('course.html', college=college, course_list=course_list)
+        return render_template('course.html', college=college, course_list=course_list, courses=courses)
 
 @course.route('/delete_course', methods=['GET', 'POST'])
 def delete_course():
     myCursor = mysql.connection.cursor()
     myCursor.execute("SELECT college_code FROM college")
     college = myCursor.fetchall()
+
+    myCursor.execute("SELECT course_code FROM course")
+    courses = myCursor.fetchall()
+    mysql.connection.commit()
 
     if request.method == 'POST':
        myCursor.execute("DELETE FROM course WHERE course.course_code=%s", (request.form.get('course-code'),))
@@ -81,5 +100,5 @@ def delete_course():
     course_list = myCursor.fetchall()
     mysql.connection.commit()
 
-    return render_template("course.html", college=college, course_list=course_list)
+    return render_template("course.html", college=college, course_list=course_list, courses=courses)
     

@@ -15,7 +15,11 @@ def studentRecord():
 
     myCursor.execute("SELECT course.course_code FROM course")
     courses = myCursor.fetchall()
-    return render_template("student.html", student_list=student_list, courses=courses)
+    myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
+    
+    return render_template("student.html", student_list=student_list, colleges_code=colleges_code, courses=courses)
 
 @student.route('/add_student', methods=['GET', 'POST'])
 def add_student():
@@ -24,6 +28,10 @@ def add_student():
     myCursor.execute("SELECT course_code FROM course")
     courses = myCursor.fetchall()
     mysql.connection.commit()
+
+    myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
 
     if request.method == 'POST':
 
@@ -54,7 +62,7 @@ def add_student():
 
             flash('Student Successfully Registered', category='success')
 
-    return render_template("add_student.html", courses=courses)
+    return render_template("add_student.html", courses=courses, colleges_code=colleges_code)
 
 @student.route('/updated_students', methods=['GET', 'POST'])
 def updated_students():
@@ -62,6 +70,10 @@ def updated_students():
     myCursor.execute("SELECT course_code FROM course")
     courses = myCursor.fetchall()
     mysql.connection.commit()
+
+    myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
 
     if request.method == 'POST':
         fname = request.form.get('first_name')
@@ -94,7 +106,7 @@ def updated_students():
                                                INNER JOIN student ON student.course_code = course.course_code""")
     student_list = myCursor.fetchall()
 
-    return render_template("student.html", student_list=student_list, courses=courses)
+    return render_template("student.html", student_list=student_list, courses=courses, colleges_code=colleges_code)
 
 @student.route('/delete_students', methods=['GET', 'POST'])
 def delete_students():
@@ -102,6 +114,10 @@ def delete_students():
     myCursor.execute("SELECT course.course_code FROM course")
     courses= myCursor.fetchall()
     mysql.connection.commit()
+
+    myCursor = mysql.connection.cursor()
+    myCursor.execute("SELECT college_code FROM college")
+    colleges_code= myCursor.fetchall()
 
     if request.method == 'POST':
         idn = request.form.get('idnum')
@@ -116,5 +132,5 @@ def delete_students():
                                         INNER JOIN student ON student.course_code = course.course_code""")
     student_list = myCursor.fetchall()
 
-    return render_template("student.html", student_list=student_list, courses=courses)
+    return render_template("student.html", student_list=student_list, courses=courses, colleges_code=colleges_code)
 

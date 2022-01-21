@@ -24,9 +24,49 @@
           <a class="nav-link active" aria-current="page" href="/college">College</a>
         </li>
      </ul>
-     <form>
-       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-       <button class="btn btn-outline-success" type="submit">Search</button>
+     <form action="{{url_for('search.studentRecord')}}" method="POST">
+      <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="margin-left:50px;">Search</button>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Search</h5>
+          <h5 id="offcanvasRightLabel" class="search-label">Search for a Student...</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <input type="text" class="form-control" name="search-student_id" id="student_id" placeholder="Student ID" aria-label="Student ID" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="search-first_name" id="first_name" placeholder="First Name" aria-label="First Name" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="search-last_name" id="last_name" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon1">
+          
+          <select class="option"  name="search-gender"  id="gender">                        
+            <option selected="selected" value="">  Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+
+          <select class="option"  name="search-year-level"  id="year-level">                        
+            <option selected="selected" value="">  Select Year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>5th Year</option>
+          </select>
+          <select class="option"  name="search-course-code"  id="course-code">                        
+              <option selected="selected" value="">  Select Course</option>
+              {% for c in courses %}
+                <option>{{c[0]}}</option>
+              {% endfor %}
+          </select>
+          <select class="option"  name="search-college-code"  id="college-code">                        
+            <option selected="selected" value="">  Select College</option>
+            {% for coll in colleges_code %}
+               <option>{{coll[0]}}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn-search">Search</button>
+        </div>
+      </div>
      </form>
     </div>
   </div>

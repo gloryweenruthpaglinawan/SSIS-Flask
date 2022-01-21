@@ -12,3 +12,32 @@
 .alert {
     position: relative;
 }
+
+.form-control{
+    margin-bottom:12px;
+}
+
+.option{
+    width:370px;
+    height:40px;
+    margin-bottom:12px;
+    
+}
+
+.search-label{
+    color:gray;
+    font-size:13px;
+    position:relative;
+    top:18px;
+    right:137px;
+}
+
+.btn-search{
+    position:relative;
+    left:23%;
+    top:30px;
+    background-color:skyblue;
+    border-width:0;
+    height:40px;
+    width:200px;
+}
