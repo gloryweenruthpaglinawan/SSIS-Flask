@@ -8,3 +8,31 @@
     left: 770px;
     top:35px;
 }
+
+.image-box{
+    width: 50px;
+    height: 45px;
+    border: 1px solid black;
+  }
+
+.student_image {
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         width: 100%;
+         height:100%;
+         cursor:pointer;
+  }
+
+.big-student_image{
+       position:relative;
+       width:0px;
+       display:inline-block;
+       -webkit-transition:width 0.3s linear 0s;
+       transition: width 0.3s linear 0s;
+       z-index:10;
+  }
+
+.student_image:hover + .big-student_image{
+        width:150px;
+  }

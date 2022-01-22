@@ -13,6 +13,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <td class="border-0"></td>
         <th width="100" scope="col">Student ID</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
@@ -24,6 +25,12 @@
     <tbody>
       {% for s in student_list %}
       <tr>
+        <td class="border-0" width="50">
+          <div class="image-box">
+             <img src="{{s[6]}}" alt="" class="student_image" id="profile-image" name="profile-image">
+              <img src="{{s[6]}}" alt="" class="big-student_image" id="big-profile-image" name="profile-image">
+          </div>
+        </td>
         <td width="100">{{s[0]}}</td>
         <td>{{s[1]}}</td>
         <td>{{s[2]}}</td>
@@ -63,7 +70,7 @@
                            <select class="course-option"
                                    name="course-code"
                                    id="course-code">
-                           <option hidden selected="selected">{{s[6]}}</option>
+                           <option hidden selected="selected">{{s[7]}}</option>
                              {% for cc in courses %}
                            <option>{{cc[0]}}</option>
                              {% endfor %}
@@ -92,7 +99,14 @@
                            <option>Fourth Year</option>
                            <option>Fifth Year</option>
                            </select>
-                          </div>
+                       </div>
+
+                       <div class="form-group" style="position:absolute; top:125px; left:300px; width:500px;">
+                              <label style="color:black; font-weight:bold;">Select Student Image</label>
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input" name="image" id="image" style="color:black;">
+                              </div>
+                       </div>
 
                        <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

@@ -28,6 +28,6 @@
 
 .btn-primary {
     position: relative;
-    left: 5px;
-    bottom: 5px;
+    left: 0px;
+    top: 10px;
 }

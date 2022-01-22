@@ -27,7 +27,7 @@ def studentRecord():
 
         else:       
 
-            myCursor.execute("""SELECT  student_id, first_name, last_name, gender, course_name, year, student.course_code FROM ssis_flask.student
+            myCursor.execute("""SELECT  student_id, first_name, last_name, gender, course_name, year, image, student.course_code FROM ssis_flask.student
                                         INNER JOIN ssis_flask.course ON course.course_code = student.course_code
                                         INNER JOIN ssis_flask.college ON college.college_code = course.college_code
                                         WHERE student_id LIKE %s AND first_name LIKE %s AND last_name LIKE %s 
